@@ -265,7 +265,7 @@ https://templatemo.com/tm-578-first-portfolio
 
                                         <p>Durante mi tiempo en el colegio Alfa y Omega, tuve el privilegio de servir como instructor de programación. </p>
 
-                                        <a class="custom-btn custom-border-btn btn mt-3">2023-2024</a>
+                                        <a href="#" class="custom-btn custom-border-btn btn mt-3">2023-2024</a>
 
                                         <div class="services-icon-wrap d-flex justify-content-center align-items-center">
                                             <i class="services-icon bi bi-mortarboard"></i>
@@ -397,75 +397,104 @@ https://templatemo.com/tm-578-first-portfolio
                             </div>
 
                             <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                                <form action="#" method="get" class="custom-form contact-form" role="form">
+                                <form id="contactForm" class="custom-form contact-form" role="form">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <div class="form-floating">
                                                 <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
-                                                
                                                 <label for="floatingInput">Nombre</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-6 col-md-6 col-12"> 
                                             <div class="form-floating">
                                                 <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
-                                                
                                                 <label for="floatingInput">Tu Correo</label>
                                             </div>
                                         </div>
-
                                         <strong class="site-footer-title d-block mt-4 mb-3">Servicio a adquirir</strong>
-
-
                                         <div class="col-lg-3 col-md-6 col-6">
                                             <div class="form-check form-check-inline">
                                                 <input name="website" type="checkbox" class="form-check-input" id="inlineCheckbox1" value="1">
-
                                                 <label class="form-check-label" for="inlineCheckbox1">
                                                     <i class="bi-globe form-check-icon"></i>
                                                     <span class="form-check-label-text">Websites</span>
                                                 </label>
-                                          </div>
+                                            </div>
                                         </div>
-
                                         <div class="col-lg-3 col-md-6 col-6">
                                             <div class="form-check form-check-inline">
                                                 <input name="branding" type="checkbox" class="form-check-input" id="inlineCheckbox2" value="1">
-
                                                 <label class="form-check-label" for="inlineCheckbox2">
                                                     <i class="bi-lightbulb form-check-icon"></i>
                                                     <span class="form-check-label-text">Diseño web</span>
                                                 </label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-3 col-md-6 col-6">
                                             <div class="form-check form-check-inline">
                                                 <input name="ecommerce" type="checkbox" class="form-check-input" id="inlineCheckbox3" value="1">
-
                                                 <label class="form-check-label" for="inlineCheckbox3">
                                                     <i class="bi-phone form-check-icon"></i>
                                                     <span class="form-check-label-text">Ecommerce</span>
                                                 </label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-12 col-12">
                                             <div class="form-floating">
                                                 <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
-                                                
                                                 <label for="floatingTextarea">Ponte en contacto conmigo</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-3 col-12 ms-auto">
                                             <button type="submit" class="form-control">Enviar</button>
                                         </div>
-
                                     </div>
                                 </form>
                             </div>
+                            
+                            <script>
+                                document.getElementById('contactForm').addEventListener('submit', function(e) {
+                                    e.preventDefault();
+                            
+                                    let name = document.getElementById('name').value;
+                                    let email = document.getElementById('email').value;
+                                    let message = document.getElementById('message').value;
+                            
+                                    let body = `Nombre: ${name}\nEmail: ${email}\nMensaje: ${message}`;
+                            
+                                    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify({
+                                            service_id: 'service_2xwlggc',
+                                            template_id: 'template_ftkganq',
+                                            user_id: 'rPtFfZA3P6PHgSJ-4',
+                                            template_params: {
+                                                'to_email': 'davidsojuel11@gmail.com',
+                                                'from_name': name,
+                                                'from_email': email,
+                                                'message_html': message
+                                            }
+                                        })
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            alert('Mensaje enviado con éxito');
+                                            document.getElementById('contactForm').reset();
+                                        } else {
+                                            alert('Hubo un error al enviar el mensaje');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        alert('Hubo un error al enviar el mensaje');
+                                    });
+                                });
+                            </script>
+                            
+
+                        </div>
 
                         </div>
                     </div>
